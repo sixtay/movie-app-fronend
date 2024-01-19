@@ -1,0 +1,13 @@
+# Fragment definition for movie fields
+fragment MovieFields on Movie {
+  id
+  title
+  image
+  releaseDate
+  genre
+  duration
+  director
+  publishedYear
+  createdAt
+  updatedAt
+}

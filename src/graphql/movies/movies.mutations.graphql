@@ -1,0 +1,20 @@
+# Create a new movie
+mutation CreateMovie($input: CreateMovieInput!) {
+  createMovie(createMovieInput: $input) {
+    ...MovieFields
+  }
+}
+
+# Update an existing movie
+mutation UpdateMovie($id: ID!, $input: MoviePayload!) {
+  updateMovie(updateMovieInput: { id: $id, movie: $input }) {
+    ...MovieFields
+  }
+}
+
+# Remove a movie
+mutation RemoveMovie($id: ID!) {
+  removeMovie(id: $id) {
+    ...MovieFields
+  }
+}

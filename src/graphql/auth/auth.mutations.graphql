@@ -1,0 +1,54 @@
+mutation login($loginInput: LoginInput) {
+  loginProvider(loginInput: $loginInput) {
+    id
+    tokens {
+      accessToken
+      refreshToken
+    }
+    user {
+      id
+      firstName
+      lastName
+      email
+      timezone
+      createdAt
+      updatedAt
+    }    
+  }
+}
+
+mutation register($email: String!, $password: String!) {
+  register(email: $email, password: $password) {
+    id
+    user {
+      id
+      firstName
+      lastName
+      email
+      timezone
+      createdAt
+      updatedAt
+    }
+    tokens {
+      accessToken
+      refreshToken
+    }
+  }
+}
+
+mutation magicLogin($email: String!) {
+  login(email: $email)
+}
+
+mutation logout {
+  logout {
+    success
+  }
+}
+
+mutation refreshAuthTokens($refreshToken: String!) {
+  refreshAuthTokens(refreshToken: $refreshToken) {
+    accessToken
+    refreshToken
+  }
+}

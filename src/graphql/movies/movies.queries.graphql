@@ -1,0 +1,14 @@
+
+# Get all movies
+query GetAllMovies {
+  movies {
+    ...MovieFields
+  }
+}
+
+# Get a movie by ID
+query GetMovieById($id: ID!) {
+  movie(id: $id) {
+    ...MovieFields
+  }
+}
