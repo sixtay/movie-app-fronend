@@ -5,6 +5,7 @@ import { Colors } from '@/enums';
 import { useDropzone } from 'react-dropzone';
 import styled from '@emotion/styled';
 import CloseIcon from '@mui/icons-material/Close';
+import { Button as MuiButton } from '@mui/material';
 import { AppLayout } from '@/layouts';
 import SaveAltIcon from '@mui/icons-material/SaveAlt';
 import LogoutIcon from '@mui/icons-material/Logout';
@@ -99,8 +100,7 @@ const MoviesPage = () => {
           </LogoutButton>
         </PageNav>
         <MoviesListView>
-          {movies &&
-            movies.length > 0 &&
+          {movies && movies.length > 0 ? (
             extentedMovieDataPagination(movies, currentPage).map((movie) => (
               <MovieCard key={movie.title}>
                 <img
@@ -119,19 +119,33 @@ const MoviesPage = () => {
                   <MovieYear>{movie.publishedYear}</MovieYear>
                 </MovieDataContainer>
               </MovieCard>
-            ))}
-          <MovieListPaginationContainer>
-            <PaginationButton
-              onClick={() => {
-                if (currentPage > 1) {
-                  setCurrentPage(currentPage - 1);
-                }
-              }}
-            >
-              Prev
-            </PaginationButton>
-            {Array.from(Array(Math.ceil(state?.movies.length / 8)).keys()).map(
-              (page) => (
+            ))
+          ) : (
+            <MovieListEmptyMessage>
+              Your movie list is empty
+              <StyledButton
+                variant="contained"
+                size="large"
+                onClick={() => router.push('/movies/create')}
+              >
+                Add a new Movie
+              </StyledButton>
+            </MovieListEmptyMessage>
+          )}
+          {movies && movies.length > 0 && (
+            <MovieListPaginationContainer>
+              <PaginationButton
+                onClick={() => {
+                  if (currentPage > 1) {
+                    setCurrentPage(currentPage - 1);
+                  }
+                }}
+              >
+                Prev
+              </PaginationButton>
+              {Array.from(
+                Array(Math.ceil(state?.movies.length / 8)).keys()
+              ).map((page) => (
                 <PaginationButton
                   key={page}
                   oddPage={(page + 1) % 2 === 0}
@@ -140,18 +154,18 @@ const MoviesPage = () => {
                 >
                   {page + 1}
                 </PaginationButton>
-              )
-            )}
-            <PaginationButton
-              onClick={() => {
-                if (currentPage < Math.ceil(state?.movies.length / 8)) {
-                  setCurrentPage(currentPage + 1);
-                }
-              }}
-            >
-              Next
-            </PaginationButton>
-          </MovieListPaginationContainer>
+              ))}
+              <PaginationButton
+                onClick={() => {
+                  if (currentPage < Math.ceil(state?.movies.length / 8)) {
+                    setCurrentPage(currentPage + 1);
+                  }
+                }}
+              >
+                Next
+              </PaginationButton>
+            </MovieListPaginationContainer>
+          )}
         </MoviesListView>
       </Container>
     </AppLayout>
@@ -400,5 +414,29 @@ const PaginationButton = styled.button<{
     margin: 0;
     margin-left: 8px;
     width: unset;
+  }
+`;
+
+const MovieListEmptyMessage = styled.div`
+  flex-direction: column;
+  font-size: 48px;
+  font-weight: 600;
+  color: #fff;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 504px;
+`;
+
+const StyledButton = styled(MuiButton)`
+  display: flex;
+  border-radius: 10px;
+  background-color: #2bd17e;
+  margin-top: 24px;
+
+  &:hover {
+    background-color: #2fe58a;
+    color: #404040;
   }
 `;

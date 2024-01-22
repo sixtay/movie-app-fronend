@@ -96,7 +96,7 @@ const LoginPage = () => {
           )}
         </Formik>
         <CallToRegister>
-          Don`&apos;`t have an account?{' '}
+          Don&apos;t have an account?{' '}
           <RegisterText href={'/register'}>Register</RegisterText>
         </CallToRegister>
       </FormPageContainer>

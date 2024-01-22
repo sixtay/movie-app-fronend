@@ -101,7 +101,7 @@ const RegisterPage = () => {
         </Formik>
         <CallToRegister>
           Already have an account?{' '}
-          <RegisterText href={'/register'}>Login</RegisterText>
+          <RegisterText href={'/login'}>Login</RegisterText>
         </CallToRegister>
       </FormPageContainer>
     </AppLayout>
