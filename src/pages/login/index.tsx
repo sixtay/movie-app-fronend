@@ -29,7 +29,7 @@ const LoginPage = () => {
     <AppLayout title="Login" showPeople={false}>
       <FormPageContainer>
         <AuthPagesNavList>
-          <RegisterLink href={'/register'}>Login</RegisterLink>
+          <RegisterLink href={'#'}>Login</RegisterLink>
         </AuthPagesNavList>
         <Formik
           initialValues={initialValues}
@@ -95,6 +95,10 @@ const LoginPage = () => {
             </SignUpFormContainer>
           )}
         </Formik>
+        <CallToRegister>
+          Don`&apos;`t have an account?{' '}
+          <RegisterText href={'/register'}>Register</RegisterText>
+        </CallToRegister>
       </FormPageContainer>
     </AppLayout>
   );
@@ -103,6 +107,21 @@ const LoginPage = () => {
 export default withAuth({
   redirectIfUserIsAuthenticated: true,
 })(LoginPage);
+
+const CallToRegister = styled.div`
+  display: flex;
+  margin-top: 24px;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 700;
+`;
+
+const RegisterText = styled(Link)`
+  font-weight: 700;
+  padding-left: 10px;
+  text-decoration: none;
+`;
 
 const FormPageContainer = styled.div`
   display: flex;

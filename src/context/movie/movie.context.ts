@@ -299,7 +299,7 @@ const moviesReducer = (state: Record<string, any>, action: any) => {
 };
 
 export const { Provider, Context } = createDataContext(moviesReducer, actions, {
-  movies: sampleMovieData,
+  movies: [],
   loading: false,
   initialMoviesLoaded: false,
   error: null,
